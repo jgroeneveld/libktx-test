@@ -69,5 +69,6 @@ project(":core") {
         api "io.github.libktx:ktx-graphics:$ktxVersion"
         api "io.github.libktx:ktx-log:$ktxVersion"
         api "io.github.libktx:ktx-ashley:$ktxVersion"
+        api "io.github.libktx:ktx-box2d:$ktxVersion"
     }
 }

@@ -4,13 +4,16 @@ import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.systems.SortedIteratingSystem
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.mygdx.game.ecs.components.SpriteComponent
 import com.mygdx.game.ecs.components.TransformComponent
+import com.mygdx.game.ecs.components.spriteComponent
+import com.mygdx.game.ecs.components.transformComponent
 import ktx.ashley.allOf
 import ktx.ashley.get
 import ktx.graphics.use
 
-class RenderSystem(
+class SpriteRenderSystem(
         val batch: SpriteBatch,
         val camera: OrthographicCamera
 ) : SortedIteratingSystem(
@@ -26,16 +29,15 @@ class RenderSystem(
     }
 
     override fun processEntity(entity: Entity, deltaTime: Float) {
-        entity[TransformComponent.mapper]?.let { transform ->
-            entity[SpriteComponent.mapper]?.let { render ->
-                batch.draw(
-                        render.sprite,
-                        transform.position.x,
-                        transform.position.y,
-                        render.sprite.width * transform.scale.x,
-                        render.sprite.height * transform.scale.y
-                )
-            }
-        }
+        val transform = entity.transformComponent()!!
+        val render = entity.spriteComponent()!!
+
+        batch.draw(
+                render.sprite,
+                transform.position.x + render.offset.x,
+                transform.position.y + render.offset.y,
+                render.sprite.width * transform.scale.x,
+                render.sprite.height * transform.scale.y
+        )
     }
 }

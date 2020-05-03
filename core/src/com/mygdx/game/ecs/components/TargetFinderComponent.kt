@@ -6,22 +6,21 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Vector2
 import com.mygdx.game.ecs.systems.DebugRenderable
-import ktx.ashley.get
 import ktx.ashley.mapperFor
 
-class TransformComponent : Component, DebugRenderable {
+class TargetFinderComponent : Component, DebugRenderable {
     companion object {
-        val mapper = mapperFor<TransformComponent>()
+        val mapper = mapperFor<TargetFinderComponent>()
     }
 
-    val position = Vector2()
-    val scale = Vector2(1f, 1f)
+    var target: Vector2? = null
 
     override fun debugRender(entity: Entity, shapeRenderer: ShapeRenderer) {
-        shapeRenderer.setColor(Color.WHITE)
-
-        shapeRenderer.point(position.x, position.y, 0f)
+        if (target != null) {
+            shapeRenderer.setColor(Color.CYAN)
+            shapeRenderer.point(target!!.x, target!!.y, 0f)
+        }
     }
 }
 
-fun Entity.transformComponent(): TransformComponent? = TransformComponent.mapper.get(this)
+fun Entity.targetFinderComponent(): TargetFinderComponent? = TargetFinderComponent.mapper.get(this)

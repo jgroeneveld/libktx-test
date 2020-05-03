@@ -6,11 +6,15 @@ import ktx.app.KtxScreen
 class Game : KtxGame<KtxScreen>() {
     @Override
     override fun create() {
-        addScreen(MyGameScene(this))
+        super.create()
 
+        addScreen(MyGameScene(this))
         setScreen<MyGameScene>()
 
-        super.create()
+//        addScreen(MyGameSceneBoxd(this))
+//        setScreen<MyGameSceneBoxd>()
+
+
     }
 
     @Override

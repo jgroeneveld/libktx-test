@@ -5,9 +5,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.utils.viewport.FitViewport
 import com.badlogic.gdx.utils.viewport.Viewport
-import com.mygdx.game.ecs.systems.RenderSystem
 import ktx.app.KtxGame
 import ktx.app.KtxScreen
+import ktx.log.debug
 
 open class Scene(val game: KtxGame<KtxScreen>) : KtxScreen {
     protected val batch by lazy { SpriteBatch() }
@@ -23,11 +23,13 @@ open class Scene(val game: KtxGame<KtxScreen>) : KtxScreen {
 
     override fun show() {
         super.show()
+
+        debug { "SHOW" }
     }
 
     override fun render(delta: Float) {
-        update(delta)
         engine.update(delta)
+        update(delta)
     }
 
     open fun update(delta: Float) {
@@ -36,6 +38,8 @@ open class Scene(val game: KtxGame<KtxScreen>) : KtxScreen {
 
     override fun hide() {
         super.hide()
+
+        debug { "HIDE" }
 
         camera.position.set(0f, 0f, 0f)
 
