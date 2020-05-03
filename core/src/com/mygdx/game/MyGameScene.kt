@@ -17,6 +17,7 @@ open class MyGameScene(game: KtxGame<KtxScreen>) : Scene(game) {
         super.show()
 
         camera.position.set(240f/2, 135f/2, 0f)
+
         engine.addSystem(BackgroundSystem(camera))
         engine.addSystem(SpriteRenderSystem(batch, camera))
         engine.addSystem(DebugRenderSystem(camera))
@@ -25,15 +26,6 @@ open class MyGameScene(game: KtxGame<KtxScreen>) : Scene(game) {
         engine.addSystem(MoveToTargetSystem())
         engine.addSystem(SpawnerSystem())
         engine.addSystem(MouseTargetSystem(viewport))
-
-//        engine.entity {
-//            with<TransformComponent> { position.set(0f, 0f); scale.set(2f, 2f) }
-//            with<SpriteComponent> { sprite = com.badlogic.gdx.graphics.g2d.Sprite(img) }
-//        }
-
-        repeat(0) {
-
-        }
     }
 
     override fun render(delta: Float) {

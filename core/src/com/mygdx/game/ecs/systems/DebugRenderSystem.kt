@@ -30,8 +30,6 @@ class DebugRenderSystem(
     }
 
     override fun processEntity(entity: Entity, deltaTime: Float) {
-        val transform = entity.transformComponent()!!
-
         for (component in entity.components) {
             if (component is DebugRenderable) {
                 component.debugRender(entity, shapeRenderer)
