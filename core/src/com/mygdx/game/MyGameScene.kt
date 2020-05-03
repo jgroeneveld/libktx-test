@@ -22,6 +22,7 @@ open class MyGameScene(game: KtxGame<KtxScreen>) : Scene(game) {
         engine.addSystem(CameraMovementSystem(camera))
         engine.addSystem(MoveToTargetSystem())
         engine.addSystem(SpawnerSystem())
+        engine.addSystem(MouseTargetSystem(camera))
 
 //        engine.entity {
 //            with<TransformComponent> { position.set(0f, 0f); scale.set(2f, 2f) }

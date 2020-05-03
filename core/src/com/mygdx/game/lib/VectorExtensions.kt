@@ -1,4 +1,4 @@
-package com.mygdx.game
+package com.mygdx.game.lib
 
 import com.badlogic.gdx.math.Vector2
 import ktx.math.minus

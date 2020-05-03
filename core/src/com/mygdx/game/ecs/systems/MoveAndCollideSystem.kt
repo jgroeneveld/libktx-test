@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.Vector2
 import com.mygdx.game.ecs.components.*
 import com.mygdx.game.lib.circleToCircle
-import com.mygdx.game.towards
+import com.mygdx.game.lib.towards
 import ktx.ashley.allOf
 import ktx.log.debug
 import ktx.math.plus
