@@ -4,8 +4,9 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Camera
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.math.Vector3
+import com.badlogic.gdx.utils.viewport.Viewport
 
-fun Camera.getMousePosition(): Vector2 {
-    val coords = this.unproject(Vector3(Gdx.input.x.toFloat(), Gdx.input.y.toFloat(), 0f))
+fun Viewport.getMousePosition(): Vector2 {
+    val coords = this.unproject(Vector2(Gdx.input.x.toFloat(), Gdx.input.y.toFloat()))
     return Vector2(coords.x, coords.y)
 }

@@ -71,8 +71,8 @@ open class MyGameSceneBoxd(game: KtxGame<KtxScreen>) : Scene(game) {
 
     }
 
-    override fun update(delta: Float) {
-        super.update(delta)
+    override fun render(delta: Float) {
+        super.render(delta)
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             Gdx.app.exit()

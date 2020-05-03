@@ -7,6 +7,7 @@ import com.mygdx.game.ecs.systems.*
 import com.mygdx.game.lib.Scene
 import ktx.app.KtxGame
 import ktx.app.KtxScreen
+import ktx.app.clearScreen
 
 open class MyGameScene(game: KtxGame<KtxScreen>) : Scene(game) {
     val img by lazy { Texture("badlogic.jpg") }
@@ -15,14 +16,15 @@ open class MyGameScene(game: KtxGame<KtxScreen>) : Scene(game) {
     override fun show() {
         super.show()
 
-        camera.position.set(120f, 70f, 1f)
+        camera.position.set(240f/2, 135f/2, 0f)
+        engine.addSystem(BackgroundSystem(camera))
         engine.addSystem(SpriteRenderSystem(batch, camera))
         engine.addSystem(DebugRenderSystem(camera))
         engine.addSystem(MoveAndCollideSystem())
         engine.addSystem(CameraMovementSystem(camera))
         engine.addSystem(MoveToTargetSystem())
         engine.addSystem(SpawnerSystem())
-        engine.addSystem(MouseTargetSystem(camera))
+        engine.addSystem(MouseTargetSystem(viewport))
 
 //        engine.entity {
 //            with<TransformComponent> { position.set(0f, 0f); scale.set(2f, 2f) }
@@ -34,8 +36,8 @@ open class MyGameScene(game: KtxGame<KtxScreen>) : Scene(game) {
         }
     }
 
-    override fun update(delta: Float) {
-        super.update(delta)
+    override fun render(delta: Float) {
+        super.render(delta)
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             Gdx.app.exit()

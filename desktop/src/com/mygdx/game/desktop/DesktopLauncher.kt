@@ -14,6 +14,8 @@ import com.mygdx.game.Game
 
 fun main() {
     val config = LwjglApplicationConfiguration()
+    config.width = 240*5
+    config.height = 135*5
     LwjglApplication(Game(), config).logLevel = Application.LOG_DEBUG
 //    LwjglApplication(Game(), config).logLevel = Application.LOG_DEBUG
 }

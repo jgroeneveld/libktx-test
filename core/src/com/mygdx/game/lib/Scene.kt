@@ -29,10 +29,6 @@ open class Scene(val game: KtxGame<KtxScreen>) : KtxScreen {
 
     override fun render(delta: Float) {
         engine.update(delta)
-        update(delta)
-    }
-
-    open fun update(delta: Float) {
         camera.update()
     }
 
