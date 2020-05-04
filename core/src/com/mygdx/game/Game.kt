@@ -13,8 +13,6 @@ class Game : KtxGame<KtxScreen>() {
 
 //        addScreen(MyGameSceneBoxd(this))
 //        setScreen<MyGameSceneBoxd>()
-
-
     }
 
     @Override

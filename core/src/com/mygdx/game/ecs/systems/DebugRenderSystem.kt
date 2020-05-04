@@ -26,15 +26,17 @@ class DebugRenderSystem(
 ) : IteratingSystem(
         allOf(TransformComponent::class).get()
 ) {
-    val shapeRenderer = ShapeRenderer()
+    // load lazy whats possible because its debug
+
+    val shapeRenderer by lazy { ShapeRenderer() }
     val font: BitmapFont by lazy { generateBitmapFont(hudFontSize) }
-    val spriteBatch = SpriteBatch()
+    val spriteBatch by lazy { SpriteBatch() }
+
+    val hudBgColor = Color(0f, 0f, 0f, 0.4f)
     val hudFontSize = 24
     val hudHeight = 32f
-    val hudWidth = Gdx.graphics.width.toFloat()
-    val hudBgColor = Color(0f, 0f, 0f, 0.4f)
-
-    val hudMatrix = Matrix4().setToOrtho2D(0f, 0f, Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat())
+    val hudWidth by lazy { Gdx.graphics.width.toFloat() }
+    val hudMatrix by lazy { Matrix4().setToOrtho2D(0f, 0f, Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat()) }
 
     fun generateBitmapFont(size: Int): BitmapFont {
         val generator = FreeTypeFontGenerator(Gdx.files.internal("PixelOperator.ttf"))
@@ -91,6 +93,5 @@ class DebugRenderSystem(
         }
     }
 
-    private fun togglePressed() =
-            Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT) && Gdx.input.isKeyJustPressed(Input.Keys.NUM_0)
+    private fun togglePressed() = Gdx.input.isKeyJustPressed(Input.Keys.GRAVE)
 }
