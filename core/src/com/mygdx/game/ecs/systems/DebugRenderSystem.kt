@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Matrix4
 import com.mygdx.game.ecs.components.TransformComponent
@@ -26,12 +27,24 @@ class DebugRenderSystem(
         allOf(TransformComponent::class).get()
 ) {
     val shapeRenderer = ShapeRenderer()
-    val font = BitmapFont()
+    val font: BitmapFont by lazy { generateBitmapFont(hudFontSize) }
     val spriteBatch = SpriteBatch()
-    val hudFontSize = 15f
+    val hudFontSize = 24
+    val hudHeight = 32f
+    val hudWidth = Gdx.graphics.width.toFloat()
     val hudBgColor = Color(0f, 0f, 0f, 0.4f)
-    val hudFontPadding = 2f
-    val hudMatrix = Matrix4().setToOrtho2D(0f, 0f, camera.viewportWidth, camera.viewportHeight)
+
+    val hudMatrix = Matrix4().setToOrtho2D(0f, 0f, Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat())
+
+    fun generateBitmapFont(size: Int): BitmapFont {
+        val generator = FreeTypeFontGenerator(Gdx.files.internal("PixelOperator.ttf"))
+        val parameter = FreeTypeFontGenerator.FreeTypeFontParameter()
+        parameter.size = size
+        val bitmapFont = generator.generateFont(parameter)
+        generator.dispose()
+
+        return bitmapFont
+    }
 
     var enabled = true
 
@@ -67,14 +80,14 @@ class DebugRenderSystem(
         shapeRenderer.projectionMatrix = hudMatrix
         shapeRenderer.use(ShapeRenderer.ShapeType.Filled) {
             it.color = hudBgColor
-            it.rect(0f, 0f, camera.viewportWidth, hudFontSize + hudFontPadding)
+            it.rect(0f, 0f, hudWidth, hudHeight)
         }
 
         Gdx.gl.glDisable(GL20.GL_BLEND)
 
         spriteBatch.color = Color.WHITE
         spriteBatch.use(hudMatrix) {
-            font.draw(it, "Entities total: ${engine.entities.size()}", hudFontPadding * 2, hudFontSize)
+            font.draw(it, "Entities total: ${engine.entities.size()}", 8f, hudFontSize.toFloat())
         }
     }
 
