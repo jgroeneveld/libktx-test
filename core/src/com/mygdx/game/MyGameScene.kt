@@ -20,15 +20,19 @@ open class MyGameScene(game: KtxGame<KtxScreen>) : Scene(game) {
         camera.position.set(240f / 2, 135f / 2, 0f)
 
         engine.addSystem(BackgroundSystem(camera))
+
+        engine.addSystem(ShadowRenderSystem(batch, camera))
         engine.addSystem(SpriteRenderSystem(batch, camera))
+        engine.addSystem(AnimatedSpriteRenderSystem(batch, camera))
+
         engine.addSystem(MoveAndCollideSystem())
         engine.addSystem(CameraMovementSystem(camera))
         engine.addSystem(MoveToTargetSystem())
         engine.addSystem(SpawnerSystem())
 
-        engine.addSystem(MouseTargetSystem(viewport))
-
         engine.addSystem(DebugRenderSystem(camera))
+
+        engine.addSystem(MouseTargetSystem(viewport))
     }
 
     override fun render(delta: Float) {

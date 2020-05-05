@@ -6,9 +6,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.math.Vector2
 import ktx.ashley.mapperFor
 
-class SpriteComponent : Component {
+class ShadowRenderer : Component {
     companion object {
-        val mapper = mapperFor<SpriteComponent>()
+        val mapper = mapperFor<ShadowRenderer>()
     }
 
     lateinit var sprite: Sprite
@@ -17,4 +17,4 @@ class SpriteComponent : Component {
     var z: Int = 0
 }
 
-fun Entity.spriteComponent(): SpriteComponent? = SpriteComponent.mapper.get(this)
+fun Entity.shadowRenderer(): ShadowRenderer? = ShadowRenderer.mapper.get(this)

@@ -8,12 +8,12 @@ import com.mygdx.game.ecs.components.*
 import ktx.ashley.allOf
 import ktx.graphics.use
 
-class SpriteRenderSystem(
+class AnimatedSpriteRenderSystem(
         val batch: SpriteBatch,
         val camera: OrthographicCamera
 ) : SortedIteratingSystem(
-        allOf(TransformComponent::class, SpriteRenderer::class).get(),
-        compareByDescending { entity -> (entity.spriteRenderer()?.let { it.z * -10000 } ?: 0) + (entity.transformComponent()?.position?.y ?: 0f) }
+        allOf(TransformComponent::class, AnimatedSpriteRenderer::class).get(),
+        compareByDescending { entity -> (entity.animatedSpriteRenderer()?.let { it.z * -10000 } ?: 0) + (entity.transformComponent()?.position?.y ?: 0f) }
 ) {
     override fun update(deltaTime: Float) {
         forceSort()
@@ -25,14 +25,17 @@ class SpriteRenderSystem(
 
     override fun processEntity(entity: Entity, deltaTime: Float) {
         val transform = entity.transformComponent()!!
-        val render = entity.spriteRenderer()!!
+        val render = entity.animatedSpriteRenderer()!!
+
+        render.stateTime += deltaTime
+        val frame = render.animation.getKeyFrame(render.stateTime, true)
 
         batch.draw(
-                render.sprite,
+                frame,
                 transform.position.x + render.offset.x,
                 transform.position.y + render.offset.y,
-                render.sprite.width * transform.scale.x,
-                render.sprite.height * transform.scale.y
+                frame.regionWidth * transform.scale.x,
+                frame.regionHeight * transform.scale.y
         )
     }
 }

@@ -11,7 +11,7 @@ class SoftCollisionComponent() : Component {
     }
 
     //separationStrength defines how strong the force is to separate entities.
-    var separationStrength: Float = 0.1f
+    var separationStrength: Float = 0.5f
 }
 
 fun Entity.softCollisionComponent(): SoftCollisionComponent? = SoftCollisionComponent.mapper.get(this)
