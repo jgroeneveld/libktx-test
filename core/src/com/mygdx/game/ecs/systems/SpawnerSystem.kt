@@ -78,10 +78,12 @@ class SpawnerSystem : IntervalSystem(1f) {
             with<MoveComponent>()
 
             with<ColliderComponent> {
-                radius = 2f
+                radius = 3f
             }
 
-            with<SoftCollisionComponent>()
+            with<SoftCollisionComponent>() {
+                separationStrength = 0.35f
+            }
 
             with<TargetFinderComponent> {
                 target = vec2(MathUtils.random(235).toFloat(), MathUtils.random(140).toFloat())
