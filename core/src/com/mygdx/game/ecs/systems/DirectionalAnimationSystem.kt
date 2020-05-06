@@ -42,6 +42,7 @@ class DirectionalAnimationSystem : IteratingSystem(
             0 to Direction.NORTH,
             1 to Direction.WEST,
             2 to Direction.SOUTH,
-            3 to Direction.EAST
+            3 to Direction.EAST,
+            4 to Direction.NORTH // exactly 360
     )
 }

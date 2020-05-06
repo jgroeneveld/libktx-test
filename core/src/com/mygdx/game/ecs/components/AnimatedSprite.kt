@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.mygdx.game.lib.Vec2
 import com.mygdx.game.lib.aseprite.Aseprite
 import com.mygdx.game.lib.ashleyext.mapperFor
+import ktx.log.debug
 
 open class AnimatedSprite(
         private val animations: Aseprite,
@@ -32,7 +33,7 @@ open class AnimatedSprite(
 
     fun centerOffset(deltaX: Int, deltaY: Int) {
         val frame = animations.frame(0)
-        offset = Vec2(frame.regionWidth / 2f + deltaX, -frame.regionHeight / 2f + deltaY)
+        offset = Vec2(-frame.regionWidth / 2f + deltaX, -frame.regionHeight / 2f + deltaY)
     }
 
     fun update(deltaTime: Float) {

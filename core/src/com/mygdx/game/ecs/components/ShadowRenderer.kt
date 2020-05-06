@@ -12,7 +12,7 @@ class ShadowRenderer(
 ) : Component {
 
     fun centerOffset(deltaX: Int, deltaY: Int) {
-        offset = Vec2(sprite.width / 2f + deltaX, -sprite.height / 2f + deltaY)
+        offset = Vec2(-sprite.width / 2f + deltaX, -sprite.height / 2f + deltaY)
     }
 
     companion object {
