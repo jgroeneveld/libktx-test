@@ -13,7 +13,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Matrix4
 import com.mygdx.game.ecs.components.TransformComponent
-import ktx.ashley.allOf
+import com.mygdx.game.lib.ashleyext.allOf
 import ktx.graphics.use
 import ktx.log.debug
 
@@ -48,7 +48,7 @@ class DebugRenderSystem(
         return bitmapFont
     }
 
-    var enabled = true
+    var enabled = false
 
     override fun update(deltaTime: Float) {
         if (togglePressed()) {

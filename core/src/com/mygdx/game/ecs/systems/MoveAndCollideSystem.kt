@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2
 import com.mygdx.game.ecs.components.*
 import com.mygdx.game.lib.circleToCircle
 import com.mygdx.game.lib.towards
-import ktx.ashley.allOf
+import com.mygdx.game.lib.ashleyext.allOf
 import ktx.log.debug
 import ktx.math.plus
 import ktx.math.times
@@ -18,12 +18,6 @@ class MoveAndCollideSystem() : IteratingSystem(
         // optionally SoftCollisionComponent
         allOf(TransformComponent::class, MoveComponent::class, ColliderComponent::class).get()
 ) {
-    override fun addedToEngine(engine: Engine?) {
-        super.addedToEngine(engine)
-
-        debug { "added to engine" }
-    }
-
     override fun processEntity(entity: Entity, deltaTime: Float) {
         val transform = entity.transformComponent()!!
         val move = entity.moveComponent()!!

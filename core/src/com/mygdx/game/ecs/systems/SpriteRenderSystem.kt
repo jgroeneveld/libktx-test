@@ -5,7 +5,7 @@ import com.badlogic.ashley.systems.SortedIteratingSystem
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.mygdx.game.ecs.components.*
-import ktx.ashley.allOf
+import com.mygdx.game.lib.ashleyext.allOf
 import ktx.graphics.use
 
 class SpriteRenderSystem(
@@ -13,7 +13,7 @@ class SpriteRenderSystem(
         val camera: OrthographicCamera
 ) : SortedIteratingSystem(
         allOf(TransformComponent::class, SpriteRenderer::class).get(),
-        compareByDescending { entity -> (entity.spriteRenderer()?.let { it.z * -10000 } ?: 0) + (entity.transformComponent()?.position?.y ?: 0f) }
+        TransformComponent.zySort
 ) {
     override fun update(deltaTime: Float) {
         forceSort()

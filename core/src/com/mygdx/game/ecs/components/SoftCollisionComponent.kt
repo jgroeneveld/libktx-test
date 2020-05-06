@@ -2,16 +2,15 @@ package com.mygdx.game.ecs.components
 
 import com.badlogic.ashley.core.Component
 import com.badlogic.ashley.core.Entity
-import ktx.ashley.mapperFor
+import com.mygdx.game.lib.ashleyext.mapperFor
 
 
-class SoftCollisionComponent() : Component {
+class SoftCollisionComponent(
+        var separationStrength: Float = 0.5f
+) : Component {
     companion object {
         val mapper = mapperFor<SoftCollisionComponent>()
     }
-
-    //separationStrength defines how strong the force is to separate entities.
-    var separationStrength: Float = 0.5f
 }
 
 fun Entity.softCollisionComponent(): SoftCollisionComponent? = SoftCollisionComponent.mapper.get(this)

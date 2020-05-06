@@ -6,17 +6,14 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Vector2
 import com.mygdx.game.ecs.systems.DebugRenderable
-import ktx.ashley.mapperFor
+import com.mygdx.game.lib.ashleyext.mapperFor
 import ktx.graphics.circle
 import ktx.math.plus
 
-class ColliderComponent() : Component, DebugRenderable {
-    companion object {
-        val mapper = mapperFor<ColliderComponent>()
-    }
-
-    var radius: Float = 2f
-    var offset: Vector2 = Vector2()
+class ColliderComponent(
+        var radius: Float,
+        var offset: Vector2 = Vector2()
+) : Component, DebugRenderable {
 
     override fun debugRender(entity: Entity, shapeRenderer: ShapeRenderer) {
         val transform = entity.transformComponent()!!
@@ -25,6 +22,11 @@ class ColliderComponent() : Component, DebugRenderable {
 
         shapeRenderer.circle(transform.position + offset, radius)
     }
+
+    companion object {
+        val mapper = mapperFor<ColliderComponent>()
+    }
+
 }
 
 fun Entity.colliderComponent(): ColliderComponent? = ColliderComponent.mapper.get(this)

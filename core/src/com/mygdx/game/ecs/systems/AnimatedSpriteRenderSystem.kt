@@ -4,16 +4,19 @@ import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.systems.SortedIteratingSystem
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.mygdx.game.ecs.components.*
-import ktx.ashley.allOf
+import com.mygdx.game.ecs.components.AnimatedSprite
+import com.mygdx.game.ecs.components.TransformComponent
+import com.mygdx.game.ecs.components.animatedSprite
+import com.mygdx.game.ecs.components.transformComponent
+import com.mygdx.game.lib.ashleyext.allOf
 import ktx.graphics.use
 
 class AnimatedSpriteRenderSystem(
         val batch: SpriteBatch,
         val camera: OrthographicCamera
 ) : SortedIteratingSystem(
-        allOf(TransformComponent::class, AnimatedSpriteRenderer::class).get(),
-        compareByDescending { entity -> (entity.animatedSpriteRenderer()?.let { it.z * -10000 } ?: 0) + (entity.transformComponent()?.position?.y ?: 0f) }
+        allOf(TransformComponent::class, AnimatedSprite::class).get(),
+        TransformComponent.zySort
 ) {
     override fun update(deltaTime: Float) {
         forceSort()
@@ -25,10 +28,10 @@ class AnimatedSpriteRenderSystem(
 
     override fun processEntity(entity: Entity, deltaTime: Float) {
         val transform = entity.transformComponent()!!
-        val render = entity.animatedSpriteRenderer()!!
+        val render = entity.animatedSprite()!!
 
-        render.stateTime += deltaTime
-        val frame = render.animation.getKeyFrame(render.stateTime, true)
+        render.update(deltaTime)
+        val frame = render.getCurrentFrame()
 
         batch.draw(
                 frame,

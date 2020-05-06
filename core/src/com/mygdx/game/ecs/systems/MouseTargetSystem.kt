@@ -14,7 +14,7 @@ import com.mygdx.game.ecs.components.TargetFinderComponent
 import com.mygdx.game.ecs.components.targetFinderComponent
 import com.mygdx.game.lib.getMousePosition
 import com.mygdx.game.lib.getMouseWorldPosition
-import ktx.ashley.allOf
+import com.mygdx.game.lib.ashleyext.allOf
 import ktx.graphics.use
 
 class MouseTargetSystem(val viewport: Viewport) : UpdatingSystem(

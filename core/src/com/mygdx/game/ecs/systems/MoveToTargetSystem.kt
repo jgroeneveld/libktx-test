@@ -5,7 +5,7 @@ import com.badlogic.ashley.systems.IteratingSystem
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Vector2
 import com.mygdx.game.ecs.components.*
-import ktx.ashley.allOf
+import com.mygdx.game.lib.ashleyext.allOf
 import ktx.log.debug
 import ktx.math.minus
 import ktx.math.vec2

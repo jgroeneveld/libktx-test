@@ -13,7 +13,7 @@ open class Scene(val game: KtxGame<KtxScreen>) : KtxScreen {
     protected val batch by lazy { SpriteBatch() }
     val camera = OrthographicCamera(240f, 135f)
     val viewport: Viewport = FitViewport(240f, 135f, camera)
-    val engine = PooledEngine()
+    val engine = PooledEngine() // pools entities and components (that implement poolable.reset())
 
     override fun resize(width: Int, height: Int) {
         super.resize(width, height)
@@ -39,6 +39,7 @@ open class Scene(val game: KtxGame<KtxScreen>) : KtxScreen {
 
         camera.position.set(0f, 0f, 0f)
 
+        // TODO: i guess remove all systems? or probably easier to just red rid of the KtxScreen concept.
         engine.removeAllEntities()
         engine.clearPools()
     }
