@@ -6,10 +6,11 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Vector2
 import com.mygdx.game.ecs.systems.DebugRenderable
+import com.mygdx.game.lib.Vec2
 import com.mygdx.game.lib.ashleyext.mapperFor
 
 class TargetFinderComponent : Component, DebugRenderable {
-    var target: Vector2? = null
+    var target: Vec2? = null
 
     override fun debugRender(entity: Entity, shapeRenderer: ShapeRenderer) {
         if (target != null) {

@@ -4,15 +4,13 @@ import com.badlogic.ashley.core.Component
 import com.badlogic.ashley.core.Entity
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
-import com.badlogic.gdx.math.Vector2
 import com.mygdx.game.ecs.systems.DebugRenderable
+import com.mygdx.game.lib.Vec2
 import com.mygdx.game.lib.ashleyext.mapperFor
-import ktx.graphics.circle
-import ktx.math.plus
 
 class ColliderComponent(
         var radius: Float,
-        var offset: Vector2 = Vector2()
+        var offset: Vec2 = Vec2.Zero
 ) : Component, DebugRenderable {
 
     override fun debugRender(entity: Entity, shapeRenderer: ShapeRenderer) {
@@ -20,7 +18,8 @@ class ColliderComponent(
 
         shapeRenderer.setColor(Color.RED)
 
-        shapeRenderer.circle(transform.position + offset, radius)
+        val pos = transform.position + offset
+        shapeRenderer.circle(pos.x, pos.y, radius)
     }
 
     companion object {

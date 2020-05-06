@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.viewport.Viewport
 import com.mygdx.game.ecs.base.UpdatingSystem
 import com.mygdx.game.ecs.components.TargetFinderComponent
 import com.mygdx.game.ecs.components.targetFinderComponent
+import com.mygdx.game.lib.Vec2
 import com.mygdx.game.lib.getMousePosition
 import com.mygdx.game.lib.getMouseWorldPosition
 import com.mygdx.game.lib.ashleyext.allOf
@@ -31,14 +32,14 @@ class MouseTargetSystem(val viewport: Viewport) : UpdatingSystem(
             renderMouseCursor(mousePosition, 1)
 
             entities.forEach {
-                it.targetFinderComponent()!!.target = mousePosition.cpy()
+                it.targetFinderComponent()!!.target = mousePosition
             }
         } else {
             renderMouseCursor(mousePosition, 0)
         }
     }
 
-    private fun renderMouseCursor(mousePosition: Vector2, tile: Int) {
+    private fun renderMouseCursor(mousePosition: Vec2, tile: Int) {
         // TODO: recalculate because window size changes invalidates this. there is surely a better way
         spriteBatch.use(viewport.camera.combined) {
             val size = 9;

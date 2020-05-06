@@ -4,13 +4,13 @@ import com.badlogic.ashley.core.Component
 import com.badlogic.ashley.core.Entity
 import com.badlogic.gdx.graphics.g2d.Animation
 import com.badlogic.gdx.graphics.g2d.TextureRegion
-import com.badlogic.gdx.math.Vector2
+import com.mygdx.game.lib.Vec2
 import com.mygdx.game.lib.aseprite.Aseprite
 import com.mygdx.game.lib.ashleyext.mapperFor
 
 open class AnimatedSprite(
         val animations: Aseprite,
-        var offset: Vector2 = Vector2()
+        var offset: Vec2 = Vec2.Zero
 ) : Component {
 
     fun play(animationName: String, restart: Boolean = true) {
@@ -28,7 +28,7 @@ open class AnimatedSprite(
 
     fun centerOffset(deltaX: Int, deltaY: Int) {
         val frame = animations.frame(0)
-        offset = Vector2(frame.regionWidth / 2f + deltaX, -frame.regionHeight / 2f + deltaY)
+        offset = Vec2(frame.regionWidth / 2f + deltaX, -frame.regionHeight / 2f + deltaY)
     }
 
     fun update(deltaTime: Float) {

@@ -6,11 +6,12 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Vector2
 import com.mygdx.game.ecs.systems.DebugRenderable
+import com.mygdx.game.lib.Vec2
 import com.mygdx.game.lib.ashleyext.mapperFor
 
 class TransformComponent : Component, DebugRenderable {
-    val position = Vector2()
-    val scale = Vector2(1f, 1f)
+    var position = Vec2.Zero
+    val scale = Vec2(1f, 1f)
     val z: Int = 0
 
     override fun debugRender(entity: Entity, shapeRenderer: ShapeRenderer) {

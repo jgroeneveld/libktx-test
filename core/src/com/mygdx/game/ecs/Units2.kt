@@ -7,10 +7,10 @@ import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.math.MathUtils
 import com.mygdx.game.Assets
 import com.mygdx.game.ecs.components.*
+import com.mygdx.game.lib.Vec2
 import com.mygdx.game.lib.aseprite.Aseprite
 import com.mygdx.game.lib.ashleyext.entity
 import com.mygdx.game.lib.ashleyext.with
-import ktx.math.vec2
 
 object Units2 {
     fun createZombie(engine: Engine, assets: Assets): Entity {
@@ -23,7 +23,7 @@ object Units2 {
             with(ColliderComponent(radius = 3f))
             with(SoftCollisionComponent(separationStrength = 0.35f))
             with(TargetFinderComponent()) {
-                target = vec2(MathUtils.random(235).toFloat(), MathUtils.random(140).toFloat())
+                target = Vec2(MathUtils.random(235).toFloat(), MathUtils.random(140).toFloat())
             }
 
             with(ShadowRenderer(Sprite(shadowImage, 0, 0, 10, 10))) {

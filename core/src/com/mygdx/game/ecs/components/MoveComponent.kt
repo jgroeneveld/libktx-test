@@ -2,16 +2,16 @@ package com.mygdx.game.ecs.components
 
 import com.badlogic.ashley.core.Component
 import com.badlogic.ashley.core.Entity
-import com.badlogic.gdx.math.Vector2
+import com.mygdx.game.lib.Vec2
 import com.mygdx.game.lib.ashleyext.mapperFor
 
-class MoveComponent : Component {
-    var acceleration = 500f
-    var friction = 500f
-    var maxSpeed = 40f
-    var direction: Vector2 = Vector2()
-
-    val velocity = Vector2()
+class MoveComponent(
+        val acceleration: Float = 500f,
+        val friction: Float = 500f,
+        val maxSpeed: Float = 40f
+) : Component {
+    var direction = Vec2.Zero
+    var velocity = Vec2.Zero
 
     companion object {
         val mapper = mapperFor<MoveComponent>()

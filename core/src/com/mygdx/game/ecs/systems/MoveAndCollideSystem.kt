@@ -6,6 +6,7 @@ import com.badlogic.ashley.systems.IteratingSystem
 import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.Vector2
 import com.mygdx.game.ecs.components.*
+import com.mygdx.game.lib.Vec2
 import com.mygdx.game.lib.circleToCircle
 import com.mygdx.game.lib.towards
 import com.mygdx.game.lib.ashleyext.allOf
@@ -25,7 +26,7 @@ class MoveAndCollideSystem() : IteratingSystem(
 
         updateVelocity(move, deltaTime)
 
-        val step = move.velocity * deltaTime
+        var step = move.velocity * deltaTime
 
         for (other in this.entities) {
             if (other == entity) {
@@ -35,20 +36,22 @@ class MoveAndCollideSystem() : IteratingSystem(
             val otherCollider = other.colliderComponent()!!
 
             val result = circleToCircle(
-                    Circle(transform.position + step + collider.offset, collider.radius),
-                    Circle(otherTransform.position + otherCollider.offset, otherCollider.radius)
+                    transform.position + step + collider.offset, collider.radius,
+                    otherTransform.position + otherCollider.offset, otherCollider.radius
             )
 
             if (result != null) {
                 var separate = result.minimumTranslationVector
+
                 entity.softCollisionComponent()?.let {
                     separate *= it.separationStrength
                 }
-                step.sub(separate)
+
+                step -= separate
             }
         }
 
-        transform.position.add(step.x, step.y)
+        transform.position += step
     }
 
     private fun updateVelocity(move: MoveComponent, deltaTime: Float) {
@@ -57,8 +60,8 @@ class MoveAndCollideSystem() : IteratingSystem(
         val newVel = if (!direction.isZero) {
             move.velocity.towards(direction * move.maxSpeed, move.acceleration * deltaTime)
         } else {
-            move.velocity.towards(Vector2.Zero, move.friction * deltaTime)
+            move.velocity.towards(Vec2.Zero, move.friction * deltaTime)
         }
-        move.velocity.set(newVel)
+        move.velocity = newVel
     }
 }

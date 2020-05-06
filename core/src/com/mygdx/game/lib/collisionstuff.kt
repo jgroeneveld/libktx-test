@@ -9,28 +9,25 @@ import ktx.math.vec2
 import kotlin.math.sqrt
 
 data class CollisionResult(
-        val normal: Vector2,
-        val minimumTranslationVector: Vector2,
-        val point: Vector2
+        val normal: Vec2,
+        val minimumTranslationVector: Vec2,
+        val point: Vec2
 )
 
 
 // nez ShapeCollisionsCircle:53
-fun circleToCircle(a: Circle, b: Circle): CollisionResult? {
-    val aPos = vec2(a.x, a.y)
-    val bPos = vec2(b.x, b.y)
-
-    val distanceSquared = Vector2.dst2(a.x, a.y, b.x, b.y)
-    val sumOfRadii = a.radius + b.radius
+fun circleToCircle(aPos: Vec2, aRadius: Float, bPos: Vec2, bRadius: Float): CollisionResult? {
+    val distanceSquared = aPos.distanceSquared(bPos)
+    val sumOfRadii = aRadius + bRadius
     val collided = distanceSquared < sumOfRadii * sumOfRadii
 
     if (collided) {
-        val normal = (aPos - bPos).nor()
+        val normal = (aPos - bPos).normalize()
 
         val depth = sumOfRadii - sqrt(distanceSquared)
         val minimumTranslationVector = normal * -depth
 
-        val point = bPos + normal * b.radius
+        val point = bPos + normal * bRadius
 
         return CollisionResult(
                 normal = normal,

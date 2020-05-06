@@ -24,14 +24,14 @@ fun Vector2.towards(target: Vector2, maxDistanceDelta: Float): Vector2 {
     )
 }
 
-fun Viewport.getMouseWorldPosition(): Vector2 {
+fun Viewport.getMouseWorldPosition(): Vec2 {
     // use this function instead of re-using the mouseposition vector. unproject actually changes it
     val coords = this.unproject(Vector2(Gdx.input.x.toFloat(), Gdx.input.y.toFloat()))
-    return Vector2(coords.x, coords.y)
+    return Vec2(coords.x, coords.y)
 }
 
-fun getMousePosition(): Vector2 {
-    return Vector2(Gdx.input.x.toFloat(), Gdx.input.y.toFloat())
+fun getMousePosition(): Vec2 {
+    return Vec2(Gdx.input.x.toFloat(), Gdx.input.y.toFloat())
 }
 
 inline fun <reified Type : Any> Array<Type?>.toGdxArray(
