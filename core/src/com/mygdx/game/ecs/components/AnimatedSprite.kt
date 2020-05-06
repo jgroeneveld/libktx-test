@@ -9,21 +9,25 @@ import com.mygdx.game.lib.aseprite.Aseprite
 import com.mygdx.game.lib.ashleyext.mapperFor
 
 open class AnimatedSprite(
-        val animations: Aseprite,
+        private val animations: Aseprite,
         var offset: Vec2 = Vec2.Zero
 ) : Component {
+    private var currentAnimationName = animations.animationNames().first()
+    private var stateTime: Float = 0f
 
     fun play(animationName: String, restart: Boolean = true) {
         currentAnimationName = animationName
         if (restart) stateTime = 0f
     }
 
+    fun isPlaying(animationName: String) = currentAnimationName == animationName
+
     fun getCurrentFrame(): TextureRegion {
         return getCurrentAnimation().getKeyFrame(stateTime, true)
     }
 
     fun getCurrentAnimation(): Animation<TextureRegion> {
-        return animations.get(currentAnimationName)
+        return animations[currentAnimationName]
     }
 
     fun centerOffset(deltaX: Int, deltaY: Int) {
@@ -34,9 +38,6 @@ open class AnimatedSprite(
     fun update(deltaTime: Float) {
         stateTime += deltaTime
     }
-
-    private var currentAnimationName = ""
-    private var stateTime: Float = 0f
 
     companion object {
         val mapper = mapperFor<AnimatedSprite>()

@@ -1,7 +1,8 @@
 package com.mygdx.game.lib
 
+import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Vector2
-import ktx.math.minus
+import kotlin.math.atan2
 import kotlin.math.sqrt
 
 // Vec2 is a immutable replacement for libgdx Vector2
@@ -37,6 +38,16 @@ data class Vec2(val x: Float, val y: Float) {
 
     fun length(): Float {
         return sqrt(x * x + y * y)
+    }
+
+    fun angle(): Float {
+        var angle = atan2(y, x) * MathUtils.radiansToDegrees
+        if (angle < 0) angle += 360f
+        return angle
+    }
+
+    fun angleRad(): Float {
+        return atan2(y, x)
     }
 
     fun towards(target: Vec2, maxDistanceDelta: Float): Vec2 {

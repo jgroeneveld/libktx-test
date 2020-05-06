@@ -14,8 +14,8 @@ import com.mygdx.game.lib.ashleyext.with
 
 object Units2 {
     fun createZombie(engine: Engine, assets: Assets): Entity {
-        val shadowImage: Texture = assets.get(Assets.SHADOW_PNG)
-        val zombieAnimations: Aseprite = assets.get(Assets.ZOMBIE1_WALK)
+        val shadowImage: Texture = assets[Assets.SHADOW_PNG]
+        val zombieAnimations: Aseprite = assets[Assets.ZOMBIE1_WALK]
 
         return engine.entity {
             with(TransformComponent())
@@ -32,8 +32,16 @@ object Units2 {
 
             with(AnimatedSprite(zombieAnimations)) {
                 centerOffset(0, 2)
-                play("WalkDown")
+                play("IdleDown")
             }
+
+            with(DirectionalAnimationPlayer(
+                    none = "IdleDown",
+                    north = "WalkUp",
+                    south = "WalkDown",
+                    east = "WalkRight",
+                    west = "WalkLeft"
+            ))
         }
     }
 }

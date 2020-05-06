@@ -238,6 +238,62 @@
     "spriteSourceSize": { "x": 0, "y": 0, "w": 10, "h": 10 },
     "sourceSize": { "w": 10, "h": 10 },
     "duration": 150
+   },
+   "zombie1-walk 30.aseprite": {
+    "frame": { "x": 300, "y": 0, "w": 10, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 10, "h": 10 },
+    "sourceSize": { "w": 10, "h": 10 },
+    "duration": 150
+   },
+   "zombie1-walk 31.aseprite": {
+    "frame": { "x": 310, "y": 0, "w": 10, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 10, "h": 10 },
+    "sourceSize": { "w": 10, "h": 10 },
+    "duration": 150
+   },
+   "zombie1-walk 32.aseprite": {
+    "frame": { "x": 320, "y": 0, "w": 10, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 10, "h": 10 },
+    "sourceSize": { "w": 10, "h": 10 },
+    "duration": 150
+   },
+   "zombie1-walk 33.aseprite": {
+    "frame": { "x": 330, "y": 0, "w": 10, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 10, "h": 10 },
+    "sourceSize": { "w": 10, "h": 10 },
+    "duration": 150
+   },
+   "zombie1-walk 34.aseprite": {
+    "frame": { "x": 340, "y": 0, "w": 10, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 10, "h": 10 },
+    "sourceSize": { "w": 10, "h": 10 },
+    "duration": 150
+   },
+   "zombie1-walk 35.aseprite": {
+    "frame": { "x": 350, "y": 0, "w": 10, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 10, "h": 10 },
+    "sourceSize": { "w": 10, "h": 10 },
+    "duration": 150
+   },
+   "zombie1-walk 36.aseprite": {
+    "frame": { "x": 360, "y": 0, "w": 10, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 10, "h": 10 },
+    "sourceSize": { "w": 10, "h": 10 },
+    "duration": 150
    }
  },
  "meta": {
@@ -245,14 +301,16 @@
   "version": "1.2.18",
   "image": "zombie1-walk.png",
   "format": "RGBA8888",
-  "size": { "w": 300, "h": 10 },
+  "size": { "w": 370, "h": 10 },
   "scale": "1",
   "frameTags": [
-   { "name": "WalkDown", "from": 0, "to": 5, "direction": "forward" },
-   { "name": "WalkUp", "from": 6, "to": 11, "direction": "forward" },
-   { "name": "WalkDownRight", "from": 12, "to": 17, "direction": "forward" },
-   { "name": "WalkTopLeft", "from": 18, "to": 23, "direction": "forward" },
-   { "name": "WalkRight", "from": 24, "to": 29, "direction": "forward" }
+   { "name": "IdleDown", "from": 0, "to": 0, "direction": "forward" },
+   { "name": "WalkDown", "from": 1, "to": 6, "direction": "forward" },
+   { "name": "WalkUp", "from": 7, "to": 12, "direction": "forward" },
+   { "name": "WalkDownRight", "from": 13, "to": 18, "direction": "forward" },
+   { "name": "WalkTopLeft", "from": 19, "to": 24, "direction": "forward" },
+   { "name": "WalkRight", "from": 25, "to": 30, "direction": "forward" },
+   { "name": "WalkLeft", "from": 31, "to": 36, "direction": "forward" }
   ],
   "layers": [
    { "name": "Sprite Sheet", "opacity": 255, "blendMode": "normal" }

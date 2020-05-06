@@ -31,6 +31,7 @@ open class MyGameScene(game: KtxGame<KtxScreen>) : Scene(game) {
         engine.addSystem(ShadowRenderSystem(batch, camera))
         engine.addSystem(SpriteRenderSystem(batch, camera))
         engine.addSystem(AnimatedSpriteRenderSystem(batch, camera))
+        engine.addSystem(DirectionalAnimationSystem())
 
         engine.addSystem(DebugRenderSystem(camera))
 

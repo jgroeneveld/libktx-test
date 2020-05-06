@@ -7,7 +7,7 @@ import com.mygdx.game.ecs.Units2
 import com.mygdx.game.ecs.components.transformComponent
 import com.mygdx.game.lib.Vec2
 
-class SpawnerSystem(val assets: Assets) : IntervalSystem(1f) {
+class SpawnerSystem(private val assets: Assets) : IntervalSystem(0.5f) {
     override fun updateInterval() {
         val zombie = Units2.createZombie(engine, assets)
 
@@ -15,5 +15,4 @@ class SpawnerSystem(val assets: Assets) : IntervalSystem(1f) {
 
         zombie.transformComponent()!!.position = randomPos
     }
-
 }
