@@ -9,11 +9,11 @@ import com.mygdx.game.ecs.systems.DebugRenderable
 import com.mygdx.game.lib.Vec2
 import com.mygdx.game.lib.ashleyext.mapperFor
 
-class TransformComponent : Component, DebugRenderable {
-    var position = Vec2.Zero
-    val scale = Vec2(1f, 1f)
-    val z: Int = 0
-
+class TransformComponent(
+        var position: Vec2 = Vec2.Zero,
+        var scale: Vec2 = Vec2(1f, 1f),
+        var z: Int = 0
+): Component, DebugRenderable {
     override fun debugRender(entity: Entity, shapeRenderer: ShapeRenderer) {
         shapeRenderer.setColor(Color.WHITE)
 

@@ -14,6 +14,7 @@ class Assets() {
     companion object {
         val SHADOW_PNG = "shadow.png"
         val ZOMBIE1_WALK = "zombie1-walk"
+        val COMMAND = "command"
     }
 
     val assetManager = configuredAssetManager()
@@ -22,6 +23,7 @@ class Assets() {
         assetManager.apply {
             load<Texture>(SHADOW_PNG)
             load<Aseprite>(ZOMBIE1_WALK)
+            load<Aseprite>(COMMAND)
         }
 
         return this

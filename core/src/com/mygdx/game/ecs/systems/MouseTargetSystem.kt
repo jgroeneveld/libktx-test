@@ -5,7 +5,9 @@ import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.utils.viewport.Viewport
-import com.mygdx.game.ecs.base.UpdatingSystem
+import com.mygdx.game.Assets
+import com.mygdx.game.ecs.Units2
+import com.mygdx.game.ecs.base.FamilySystem
 import com.mygdx.game.ecs.components.TargetFinderComponent
 import com.mygdx.game.ecs.components.targetFinderComponent
 import com.mygdx.game.lib.Vec2
@@ -13,24 +15,26 @@ import com.mygdx.game.lib.ashleyext.allOf
 import com.mygdx.game.lib.getMouseWorldPosition
 import ktx.graphics.use
 
-class MouseTargetSystem(private val viewport: Viewport) : UpdatingSystem(
+class MouseTargetSystem(
+        private val assets: Assets,
+        private val viewport: Viewport
+) : FamilySystem(
         allOf(TargetFinderComponent::class).get()
 ) {
-    private val crosshair = Texture("crosshair-9x9.png")
+    private val crosshair = Texture("crosshair-9x9.png") // TODO: put into assets
     private val spriteBatch = SpriteBatch()
 
     override fun update(deltaTime: Float) {
         val mousePosition = viewport.getMouseWorldPosition()
 
-        // TODO: this has to be done to get the mouse even if it just was tapped
-        if (Gdx.input.isButtonJustPressed(Input.Buttons.RIGHT) || Gdx.input.isButtonPressed(Input.Buttons.RIGHT)) {
-            renderMouseCursor(mousePosition, 1)
+        renderMouseCursor(mousePosition, 0)
+
+        if (Gdx.input.isButtonJustPressed(Input.Buttons.RIGHT)) {
+            Units2.createMoveCommand(engine, assets, mousePosition)
 
             entities.forEach {
                 it.targetFinderComponent()!!.target = mousePosition
             }
-        } else {
-            renderMouseCursor(mousePosition, 0)
         }
     }
 

@@ -12,10 +12,13 @@ import com.mygdx.game.lib.ashleyext.allOf
 import ktx.graphics.use
 
 class AnimatedSpriteRenderSystem(
-        val batch: SpriteBatch,
-        val camera: OrthographicCamera
+        private val batch: SpriteBatch,
+        private val camera: OrthographicCamera
 ) : SortedIteratingSystem(
-        allOf(TransformComponent::class, AnimatedSprite::class).get(),
+        allOf(
+                TransformComponent::class,
+                AnimatedSprite::class
+        ).get(),
         TransformComponent.zySort
 ) {
     override fun update(deltaTime: Float) {

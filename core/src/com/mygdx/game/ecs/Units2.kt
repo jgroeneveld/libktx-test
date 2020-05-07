@@ -13,6 +13,21 @@ import com.mygdx.game.lib.ashleyext.entity
 import com.mygdx.game.lib.ashleyext.with
 
 object Units2 {
+    fun createMoveCommand(engine: Engine, assets: Assets, pos: Vec2): Entity {
+        val command: Aseprite = assets[Assets.COMMAND]
+
+        return engine.entity {
+            with(TransformComponent(position = pos, z = -999))
+            with(AnimatedSprite(command)) {
+                center()
+                play("Move_nr")
+            }
+            with(AfterAnimation {
+                engine.removeEntity(it)
+            })
+        }
+    }
+
     fun createZombie(engine: Engine, assets: Assets): Entity {
         val shadowImage: Texture = assets[Assets.SHADOW_PNG]
         val zombieAnimations: Aseprite = assets[Assets.ZOMBIE1_WALK]
@@ -27,11 +42,11 @@ object Units2 {
             }
 
             with(ShadowRenderer(Sprite(shadowImage, 0, 0, 10, 10))) {
-                centerOffset(0, 2)
+                center(0, 2)
             }
 
             with(AnimatedSprite(zombieAnimations)) {
-                centerOffset(0, 2)
+                center(0, 2)
                 play("IdleDown")
             }
 
