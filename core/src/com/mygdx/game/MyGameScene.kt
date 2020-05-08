@@ -37,6 +37,7 @@ open class MyGameScene(game: KtxGame<KtxScreen>) : Scene(game) {
 
         engine.addSystem(DebugRenderSystem(camera))
 
+        engine.addSystem(SelectionSystem(viewport))
         engine.addSystem(MouseTargetSystem(assets, viewport))
     }
 

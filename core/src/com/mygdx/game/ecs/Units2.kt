@@ -40,6 +40,7 @@ object Units2 {
             with(TargetFinderComponent()) {
                 target = Vec2(MathUtils.random(235).toFloat(), MathUtils.random(140).toFloat())
             }
+            with(Selectable(-4f,-2f,8f,8f))
 
             with(ShadowRenderer(Sprite(shadowImage, 0, 0, 10, 10))) {
                 center(0, 2)

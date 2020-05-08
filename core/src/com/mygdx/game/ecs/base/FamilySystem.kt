@@ -6,6 +6,7 @@ import com.badlogic.ashley.core.EntitySystem
 import com.badlogic.ashley.core.Family
 import com.badlogic.ashley.utils.ImmutableArray
 import com.badlogic.gdx.utils.Array
+import ktx.log.debug
 
 
 // A system that has a familiy of entities but does not iterate them.

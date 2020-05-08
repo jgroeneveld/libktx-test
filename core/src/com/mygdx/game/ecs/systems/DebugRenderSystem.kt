@@ -75,7 +75,6 @@ class DebugRenderSystem(
     }
 
     private fun renderHud() {
-        // we have to be cautious with this to not get into the way of any spritebatch.
         Gdx.gl.glEnable(GL20.GL_BLEND);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 
